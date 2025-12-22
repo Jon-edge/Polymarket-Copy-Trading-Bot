@@ -1,47 +1,136 @@
-# Solana Pumpfun Smart Contract for pumpfun fork
-This is the Pumpfun Smart contract for Pump.fun - Add virtual LP, remove LP, create Raydium Pool.
+# Polymarket Copy Trading Bot
 
+> Automated copy trading bot for Polymarket that mirrors trades from top performers with intelligent position sizing and real-time execution.
 
-## Cᴏɴᴛᴀᴄᴛ ᴍᴇ Oɴ ʜᴇʀᴇ: 👋 ##
+[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](LICENSE)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
 
-Telegram: https://t.me/opensea712
-
-<div style={{display : flex ; justify-content : space-evenly}}> 
-    <a href="https://t.me/opensea712" target="_blank"><img alt="Telegram"
-        src="https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white"/></a>
-    <a href="https://discordapp.com/users/343286332446998530" target="_blank"><img alt="Discord"
-        src="https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white"/></a>
-</div>
+---
 
 ## Overview
-This smart contract is intended for the Pump.fun project.
 
-https://app.ape.lol
-</br>
-https://agents.land/campaign
+The Polymarket Copy Trading Bot automatically replicates trades from successful Polymarket traders to your wallet. It monitors trader activity 24/7, calculates proportional position sizes based on your capital, and executes matching orders in real-time.
 
-## Available features
-- All handled in smart contracts: 
-Token creation and Raydium deposits are handled in the smart contract.
+## Advanced version
 
-- Add some launch phases: 
-Add `Presale` phase before the launch to allow snipers.
+**🚀 Version 2 Available:** An advanced version with **RTDS (Real-Time Data Stream)** monitoring is now available as a private repository. <br />
+Version 2 features the fastest trade detection method with near-instantaneous trade replication, lower latency, and reduced API load. Copy trading works excellently in the advanced version.
 
-- Raydium/Meteora migration: 
-Token launchers can migrate their tokens to Raydium or Meteora as they wish after the curve is completed.
+<img width="680" height="313" alt="image (19)" src="https://github.com/user-attachments/assets/d868f9f2-a1dd-4bfe-a76e-d8cbdfbd8497" />
 
-### Here
-You can check the tx to Remove vitual LP and Create Raydium Pool in this smart contract with CPI calls.  
-https://explorer.solana.com/tx/4L6MWmtV1ZsT8NFfbtu68ZYyYVbpvZ4iynJhPdZw8jESi28TxwojjTFs88Q5QRdNUb297aWfkKcoYP9Ya8npx8AV?cluster=devnet
+## Trading tool
 
-## Test addresses and transactions
-- Contract
-https://solscan.io/account/H7xKEMfibSSeU5vMbSfj75kKLM5uVVQkogvkLgdzSroB?cluster=devnet
-- Token create tx (create a spl token, FT + CNFT)
-https://solscan.io/tx/3UXiUJm1nzayQLXhGAeucro5h1hy147vGRwCqeXgdsSPmMHF1fH2oXryKgoeWQGjbkXPQZrmKE6ZGgDgidc1w5H?cluster=devnet
-- Buy tx
-https://solscan.io/tx/5yB3pABMtKrhYJDEPTuTHnPsaTiKhet5jjCFcwafei3hr1jtwC72aZ8k9iJAC7JHHTisVZopBzMun6o982cfa3op?cluster=devnet
-- Sell tx
-https://solscan.io/tx/5aRkCjGbwAyYC9k3ahP9KsJJd1AyNNvwDuDSKiYsYSbU4rCzQZju5HMmcaZuLD87cn4PdGpMEN2Ca4PMGCr5AHhj?cluster=devnet
-- Raydium migration tx
-https://solscan.io/tx/3VTRdb52aS33eqfXC28Nu4CeUBCHGg1CgwZp88CqUd61NmPzwkeQ75wZG6mPdjdgiYSLZnosE82iW4cDj9kLsiZb?cluster=devnet
+I've also developed a trading bot for Polymarket built with **Rust**.
+
+<img width="1917" height="942" alt="image (21)" src="https://github.com/user-attachments/assets/08a5c962-7f8b-4097-98b6-7a457daa37c9" />
+https://www.youtube.com/watch?v=0uUI_ht_2eY
+
+### How It Works
+<img width="995" height="691" alt="screenshot" src="https://github.com/user-attachments/assets/79715c7a-de2c-4033-81e6-b2288963ec9b" />
+
+1. **Select Traders** - Choose top performers from [Polymarket leaderboard](https://polymarket.com/leaderboard) or [Predictfolio](https://predictfolio.com)
+2. **Monitor Activity** - Bot continuously watches for new positions opened by selected traders using Polymarket Data API
+3. **Calculate Size** - Automatically scales trades based on your balance vs. trader's balance
+4. **Execute Orders** - Places matching orders on Polymarket using your wallet
+5. **Track Performance** - Maintains complete trade history in MongoDB
+
+## Quick Start
+
+### Prerequisites
+
+- Node.js v18+
+- MongoDB database ([MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register) free tier works)
+- Polygon wallet with USDC and POL/MATIC for gas
+- RPC endpoint ([Infura](https://infura.io) or [Alchemy](https://www.alchemy.com) free tier)
+
+### Installation
+
+```bash
+# Clone repository
+git clone https://github.com/earthskyorg/polymarket-copy-trading-bot.git
+cd polymarket-copy-trading-bot
+
+# Install dependencies
+npm install
+
+# Run interactive setup wizard
+npm run setup
+
+# Build and start
+npm run build
+npm run health-check  # Verify configuration
+npm start             # Start trading
+```
+
+**📖 For detailed setup instructions, see [Getting Started Guide](./docs/GETTING_STARTED.md)**
+
+## Features
+
+- **Multi-Trader Support** - Track and copy trades from multiple traders simultaneously
+- **Smart Position Sizing** - Automatically adjusts trade sizes based on your capital
+- **Tiered Multipliers** - Apply different multipliers based on trade size
+- **Position Tracking** - Accurately tracks purchases and sells even after balance changes
+- **Trade Aggregation** - Combines multiple small trades into larger executable orders
+- **Real-time Execution** - Monitors trades every second and executes instantly
+- **MongoDB Integration** - Persistent storage of all trades and positions
+- **Price Protection** - Built-in slippage checks to avoid unfavorable fills
+
+### Monitoring Method
+
+The bot currently uses the **Polymarket Data API** to monitor trader activity and detect new positions. The monitoring system polls trader positions at configurable intervals (default: 1 second) to ensure timely trade detection and execution.
+
+## Configuration
+
+### Essential Variables
+
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `USER_ADDRESSES` | Traders to copy (comma-separated) | `'0xABC..., 0xDEF...'` |
+| `PROXY_WALLET` | Your Polygon wallet address | `'0x123...'` |
+| `PRIVATE_KEY` | Wallet private key (no 0x prefix) | `'abc123...'` |
+| `MONGO_URI` | MongoDB connection string | `'mongodb+srv://...'` |
+| `RPC_URL` | Polygon RPC endpoint | `'https://polygon...'` |
+| `TRADE_MULTIPLIER` | Position size multiplier (default: 1.0) | `2.0` |
+| `FETCH_INTERVAL` | Check interval in seconds (default: 1) | `1` |
+
+### Finding Traders
+
+1. Visit [Polymarket Leaderboard](https://polymarket.com/leaderboard)
+2. Look for traders with positive P&L, win rate >55%, and active trading history
+3. Verify detailed stats on [Predictfolio](https://predictfolio.com)
+4. Add wallet addresses to `USER_ADDRESSES`
+
+**📖 For complete configuration guide, see [Quick Start](./docs/QUICK_START.md)**
+
+## Docker Deployment
+
+Deploy with Docker Compose for a production-ready setup:
+
+```bash
+# Configure and start
+cp .env.example .env
+docker-compose up -d
+
+# View logs
+docker-compose logs -f polymarket
+```
+
+**📖 [Complete Docker Guide →](./docs/DOCKER.md)**
+
+## Documentation
+
+### Getting Started
+- **[🚀 Getting Started Guide](./docs/GETTING_STARTED.md)** - Complete beginner's guide
+- **[⚡ Quick Start](./docs/QUICK_START.md)** - Fast setup for experienced users
+
+## License
+
+ISC License - See [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Built on [Polymarket CLOB Client](https://github.com/Polymarket/clob-client)
+- Uses [Predictfolio](https://predictfolio.com) for trader analytics
+- Powered by Polygon network
+
+**Support:** For questions or issues, contact via Telegram: [@earthskyorg](https://t.me/opensea712) | Twitter: [@earthskyorg](https://x.com/shinytechapes)
