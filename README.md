@@ -162,6 +162,7 @@ npm start
 
 ---
 
+<a id="configuration"></a>
 ## ⚙️ Configuration
 
 ### Essential Environment Variables
