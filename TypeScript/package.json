@@ -33,6 +33,7 @@
         "find-low-risk": "ts-node src/scripts/findLowRiskTraders.ts",
         "scan-traders": "ts-node src/scripts/scanBestTraders.ts",
         "scan-markets": "ts-node src/scripts/scanTradersFromMarkets.ts",
+        "analyze-trader": "ts-node src/scripts/analyzeTrader.ts",
         "aggregate": "ts-node src/scripts/aggregateResults.ts",
         "audit": "ts-node src/scripts/auditCopyTradingAlgorithmFixed.ts",
         "audit-old": "ts-node src/scripts/auditCopyTradingAlgorithm.ts",

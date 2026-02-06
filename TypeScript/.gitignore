@@ -65,6 +65,7 @@ playwright-report/
 # Project-specific
 simulation_results/
 trader_data_cache/
+trader_analysis_results/
 
 # Docker
 .dockerignore
